@@ -51,16 +51,12 @@
   </head>
   <body>
     <div class="container">
-      <input
-        type="text"
-        id="style_artist"
-        placeholder="Enter style/artist or leave blank for random"
-      />
       <button onclick="generateAndDisplayPrompt()">Generate Prompt</button>
       <p id="generatedPrompt"></p>
-
+      
       <div>
         <label>Random Descriptions:</label>
+       
         <input type="checkbox" id="randomDescriptions" checked />
       </div>
       <div>
@@ -68,7 +64,13 @@
         <input type="checkbox" id="randomDetailedModifiers" checked />
       </div>
       <div>
+        <input
+        type="text"
+        id="style_artist"
+        placeholder="Enter style/artist or leave blank for random"
+      />
         <label>Random Styles/Artists:</label>
+        
         <input type="checkbox" id="randomStylesArtists" checked />
       </div>
       <div>
