@@ -59,13 +59,6 @@
           <input type="text" id="inputDescriptions" placeholder="Enter description or leave blank for random">
           <input type="checkbox" id="randomDescriptions" checked/>
       </div>
-      
-      <div>
-          <label>Random Detailed Modifiers:</label>
-          <input type="text" id="inputDetailedModifiers" placeholder="Enter detailed modifier or leave blank for random">
-          <input type="checkbox" id="randomDetailedModifiers" checked/>
-      </div>
-      
       <div>
           <label>Style/Artist:</label>
           <input type="text" id="style_artist" placeholder="Enter style/artist or leave blank for random">
@@ -78,11 +71,18 @@
           <input type="checkbox" id="randomTechniques" checked/>
       </div>
       
+      
       <div>
           <label>Random Themes/Concepts:</label>
           <input type="text" id="inputThemesConcepts" placeholder="Enter theme/concept or leave blank for random">
           <input type="checkbox" id="randomThemesConcepts" checked/>
       </div>
+      <div>
+          <label>Random Detailed Modifiers:</label>
+          <input type="text" id="inputDetailedModifiers" placeholder="Enter detailed modifier or leave blank for random">
+          <input type="checkbox" id="randomDetailedModifiers" checked/>
+      </div>
+      
       
       <div>
           <label>Random Technical Modifiers:</label>
@@ -93,44 +93,45 @@
 
     <script>
       function generateAndDisplayPrompt() {
-        const style_artist = document.getElementById("style_artist").value;
-        const randomDescriptions =
-          document.getElementById("randomDescriptions").checked;
-        const randomDetailedModifiers = document.getElementById(
-          "randomDetailedModifiers"
-        ).checked;
-        const randomStylesArtists = document.getElementById(
-          "randomStylesArtists"
-        ).checked;
-        const randomTechniques =
-          document.getElementById("randomTechniques").checked;
-        const randomThemesConcepts = document.getElementById(
-          "randomThemesConcepts"
-        ).checked;
-        const randomTechnicalModifiers = document.getElementById(
-          "randomTechnicalModifiers"
-        ).checked;
+    const style_artist = document.getElementById("style_artist").value;
+    const inputDescriptions = document.getElementById("inputDescriptions").value;
+    const inputDetailedModifiers = document.getElementById("inputDetailedModifiers").value;
+    const inputTechniques = document.getElementById("inputTechniques").value;
+    const inputThemesConcepts = document.getElementById("inputThemesConcepts").value;
+    const inputTechnicalModifiers = document.getElementById("inputTechnicalModifiers").value;
 
-        fetch("/generate-prompt", {
-          method: "POST",
-          headers: {
+    const randomDescriptions = document.getElementById("randomDescriptions").checked;
+    const randomDetailedModifiers = document.getElementById("randomDetailedModifiers").checked;
+    const randomStylesArtists = document.getElementById("randomStylesArtists").checked;
+    const randomTechniques = document.getElementById("randomTechniques").checked;
+    const randomThemesConcepts = document.getElementById("randomThemesConcepts").checked;
+    const randomTechnicalModifiers = document.getElementById("randomTechnicalModifiers").checked;
+
+    fetch("/generate-prompt", {
+        method: "POST",
+        headers: {
             "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
+        },
+        body: JSON.stringify({
             style_artist: style_artist,
+            inputDescriptions: inputDescriptions,
+            inputDetailedModifiers: inputDetailedModifiers,
+            inputTechniques: inputTechniques,
+            inputThemesConcepts: inputThemesConcepts,
+            inputTechnicalModifiers: inputTechnicalModifiers,
             randomDescriptions: randomDescriptions,
             randomDetailedModifiers: randomDetailedModifiers,
             randomStylesArtists: randomStylesArtists,
             randomTechniques: randomTechniques,
             randomThemesConcepts: randomThemesConcepts,
             randomTechnicalModifiers: randomTechnicalModifiers,
-          }),
-        })
-          .then((response) => response.json())
-          .then((data) => {
-            document.getElementById("generatedPrompt").innerText = data.prompt;
-          });
-      }
+        }),
+    })
+    .then((response) => response.json())
+    .then((data) => {
+        document.getElementById("generatedPrompt").innerText = data.prompt;
+    });
+}
     </script>
   </body>
 </html>
