@@ -1,53 +1,12 @@
 import random
+from descriptions import descriptions
+from detailed_modifiers import detailed_modifiers
+from styles_artists import styles_artists
+from techniques import techniques
+from themes import themes_concepts
 
 
-# Predefined lists
-# Descriptions
-descriptions = [
-    "forest scene", 
-    "portrait of an unknown figure", 
-    "bustling cityscape", 
-    "tranquil ocean view", 
-    "mountainous landscape"
-]
 
-# Styles/Artists
-styles_artists = [
-    "Paul Klee", 
-    "Salvador Dali", 
-    "Picasso", 
-    "Douglas Adams", 
-    "Wes Anderson"
-]
-
-# Techniques
-techniques = [
-    "watercolor techniques", 
-    "paper cut animation methods", 
-    "spray painted realism", 
-    "digital art rendering", 
-    "oil painting strokes"
-]
-
-# Themes/Concepts
-themes_concepts = [
-    "grim dark cryptidwave", 
-    "surrealism", 
-    "romantic nostalgia", 
-    "futuristic dystopia", 
-    "Victorian elegance"
-]
-
-# Detailed Modifiers
-detailed_modifiers = [
-    "anatomical precision", 
-    "Fibonacci sequence patterns", 
-    "vibrant color contrasts", 
-    "intricate shadow play", 
-    "geometric distortions"
-]
-
-# Technical Modifiers
 technical_modifiers = [
     "--ar 2:3", 
     "--ar 16:9", 
@@ -61,19 +20,36 @@ def random_element(elements_list):
     return random.choice(elements_list)
 
 
-def generate_prompt(style_artist=None):
-    if not style_artist:
-        style_artist = random_element(styles_artists)  # Corrected variable assignment
-    description = random_element(descriptions)
-    technique = random_element(techniques)
-    theme_concept = random_element(themes_concepts)
-    detailed_modifier = random_element(detailed_modifiers)
-    technical_modifier = random_element(technical_modifiers)
-    
-    # Revised prompt structure
-    prompt = f"Create a {description} inspired by {style_artist}, portrayed through {technique}, evoking a sense of {theme_concept}. It should feature {detailed_modifier} and adhere to settings {technical_modifier}."
-    
+def generate_prompt(style_artist=None, randomDescriptions=True, randomDetailedModifiers=True, randomStylesArtists=True, randomTechniques=True, randomThemesConcepts=True, randomTechnicalModifiers=True):
+    if not style_artist and randomStylesArtists:
+        style_artist = random_element(styles_artists)
+
+    description = random_element(descriptions) if randomDescriptions else ""
+    technique = random_element(techniques) if randomTechniques else ""
+    theme_concept = random_element(themes_concepts) if randomThemesConcepts else ""
+    detailed_modifier = random_element(detailed_modifiers) if randomDetailedModifiers else ""
+    technical_modifier = random_element(technical_modifiers) if randomTechnicalModifiers else ""
+
+    prompt_parts = []
+
+    if randomDescriptions:
+        prompt_parts.append(description)
+    if randomStylesArtists:
+        prompt_parts.append(f"inspired by {style_artist}")
+    if randomTechniques:
+        prompt_parts.append(f"portrayed through {technique}")
+    if randomThemesConcepts:
+        prompt_parts.append(f"evoking a sense of {theme_concept}")
+    if randomDetailedModifiers:
+        prompt_parts.append(detailed_modifier)
+    if randomTechnicalModifiers:
+        prompt_parts.append(technical_modifier)
+
+    prompt = " ".join(part for part in prompt_parts if part)  # Join only non-empty parts
+
     return prompt
+
+
 
 def user_input(category):
     user_choice = input(f"Enter your choice for {category} or type 'random' to randomize: ")

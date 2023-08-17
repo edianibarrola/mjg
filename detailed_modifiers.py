@@ -280,7 +280,7 @@ detailed_modifiers = [
     "fluid spin art centrifugal patterns",
     "vintage hand-crafted marionettes",
     "intricate hand-made paper mâché forms",
-    "
+    
 
 ]
 
