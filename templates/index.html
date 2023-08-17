@@ -52,7 +52,9 @@
   <body>
   <div class="container">
       <button onclick="generateAndDisplayPrompt()">Generate Prompt</button>
-      <p id="generatedPrompt"></p>
+      <p id="generatedPrompt"></p><p id="generatedPrompt"></p>
+      <button onclick="copyToClipboard()">Copy to Clipboard</button>
+      
   
       <div>
           <label>Random Descriptions:</label>
@@ -131,6 +133,16 @@
     .then((data) => {
         document.getElementById("generatedPrompt").innerText = data.prompt;
     });
+}
+function copyToClipboard() {
+    const promptText = document.getElementById("generatedPrompt").innerText;
+    const textArea = document.createElement("textarea");
+    textArea.value = promptText;
+    document.body.appendChild(textArea);
+    textArea.select();
+    document.execCommand("copy");
+    document.body.removeChild(textArea);
+    alert("Prompt copied to clipboard!");
 }
     </script>
   </body>

@@ -4,16 +4,17 @@ from detailed_modifiers import detailed_modifiers
 from styles_artists import styles_artists
 from techniques import techniques
 from themes import themes_concepts
+from technical_modifiers import technical_modifiers
 
 
 
-technical_modifiers = [
-    "--ar 2:3", 
-    "--ar 16:9", 
-    "--test", 
-    "--niji", 
+# technical_modifiers = [
+#     "--ar 2:3", 
+#     "--ar 16:9", 
+#     "--test", 
+#     "--niji", 
     
-]
+# ]
 
 def random_element(elements_list):
     return random.choice(elements_list)
