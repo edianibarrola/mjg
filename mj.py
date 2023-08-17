@@ -15,34 +15,34 @@ technical_modifiers = [
     
 ]
 
-
 def random_element(elements_list):
     return random.choice(elements_list)
 
+def generate_prompt(style_artist=None, description_input=None, detailed_modifier_input=None, technique_input=None, theme_concept_input=None, technical_modifier_input=None, randomDescriptions=True, randomDetailedModifiers=True, randomStylesArtists=True, randomTechniques=True, randomThemesConcepts=True, randomTechnicalModifiers=True):
 
-def generate_prompt(style_artist=None, randomDescriptions=True, randomDetailedModifiers=True, randomStylesArtists=True, randomTechniques=True, randomThemesConcepts=True, randomTechnicalModifiers=True):
     if not style_artist and randomStylesArtists:
         style_artist = random_element(styles_artists)
-
-    description = random_element(descriptions) if randomDescriptions else ""
-    technique = random_element(techniques) if randomTechniques else ""
-    theme_concept = random_element(themes_concepts) if randomThemesConcepts else ""
-    detailed_modifier = random_element(detailed_modifiers) if randomDetailedModifiers else ""
-    technical_modifier = random_element(technical_modifiers) if randomTechnicalModifiers else ""
+    
+    # New input handling
+    description = description_input if description_input else (random_element(descriptions) if randomDescriptions else "")
+    detailed_modifier = detailed_modifier_input if detailed_modifier_input else (random_element(detailed_modifiers) if randomDetailedModifiers else "")
+    technique = technique_input if technique_input else (random_element(techniques) if randomTechniques else "")
+    theme_concept = theme_concept_input if theme_concept_input else (random_element(themes_concepts) if randomThemesConcepts else "")
+    technical_modifier = technical_modifier_input if technical_modifier_input else (random_element(technical_modifiers) if randomTechnicalModifiers else "")
 
     prompt_parts = []
 
-    if randomDescriptions:
+    if description:
         prompt_parts.append(description)
-    if randomStylesArtists:
+    if style_artist:
         prompt_parts.append(f"inspired by {style_artist}")
-    if randomTechniques:
+    if technique:
         prompt_parts.append(f"portrayed through {technique}")
-    if randomThemesConcepts:
+    if theme_concept:
         prompt_parts.append(f"evoking a sense of {theme_concept}")
-    if randomDetailedModifiers:
+    if detailed_modifier:
         prompt_parts.append(detailed_modifier)
-    if randomTechnicalModifiers:
+    if technical_modifier:
         prompt_parts.append(technical_modifier)
 
     prompt = " ".join(part for part in prompt_parts if part)  # Join only non-empty parts

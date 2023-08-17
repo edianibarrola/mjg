@@ -50,42 +50,46 @@
     </style>
   </head>
   <body>
-    <div class="container">
+  <div class="container">
       <button onclick="generateAndDisplayPrompt()">Generate Prompt</button>
       <p id="generatedPrompt"></p>
+  
+      <div>
+          <label>Random Descriptions:</label>
+          <input type="text" id="inputDescriptions" placeholder="Enter description or leave blank for random">
+          <input type="checkbox" id="randomDescriptions" checked/>
+      </div>
       
       <div>
-        <label>Random Descriptions:</label>
-       
-        <input type="checkbox" id="randomDescriptions" checked />
+          <label>Random Detailed Modifiers:</label>
+          <input type="text" id="inputDetailedModifiers" placeholder="Enter detailed modifier or leave blank for random">
+          <input type="checkbox" id="randomDetailedModifiers" checked/>
       </div>
+      
       <div>
-        <label>Random Detailed Modifiers:</label>
-        <input type="checkbox" id="randomDetailedModifiers" checked />
+          <label>Style/Artist:</label>
+          <input type="text" id="style_artist" placeholder="Enter style/artist or leave blank for random">
+          <input type="checkbox" id="randomStylesArtists" checked/>
       </div>
+      
       <div>
-        <input
-        type="text"
-        id="style_artist"
-        placeholder="Enter style/artist or leave blank for random"
-      />
-        <label>Random Styles/Artists:</label>
-        
-        <input type="checkbox" id="randomStylesArtists" checked />
+          <label>Random Techniques:</label>
+          <input type="text" id="inputTechniques" placeholder="Enter technique or leave blank for random">
+          <input type="checkbox" id="randomTechniques" checked/>
       </div>
+      
       <div>
-        <label>Random Techniques:</label>
-        <input type="checkbox" id="randomTechniques" checked />
+          <label>Random Themes/Concepts:</label>
+          <input type="text" id="inputThemesConcepts" placeholder="Enter theme/concept or leave blank for random">
+          <input type="checkbox" id="randomThemesConcepts" checked/>
       </div>
+      
       <div>
-        <label>Random Themes/Concepts:</label>
-        <input type="checkbox" id="randomThemesConcepts" checked />
+          <label>Random Technical Modifiers:</label>
+          <input type="text" id="inputTechnicalModifiers" placeholder="Enter technical modifier or leave blank for random">
+          <input type="checkbox" id="randomTechnicalModifiers" checked/>
       </div>
-      <div>
-        <label>Random Technical Modifiers:</label>
-        <input type="checkbox" id="randomTechnicalModifiers" checked />
-      </div>
-    </div>
+  </div>
 
     <script>
       function generateAndDisplayPrompt() {
