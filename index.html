@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MidJourney Prompt Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e0e0e0;
+            display: flex;
+            height: 100vh;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .neumorphic {
+            padding: 20px;
+            border-radius: 15px;
+            background: #e0e0e0;
+            box-shadow:  10px 10px 15px #bebebe, 
+                        -10px -10px 15px #ffffff;
+            width: 350px;
+            text-align: center;
+        }
+
+        input, button {
+            background-color: #e0e0e0;
+            padding: 10px;
+            border: none;
+            border-radius: 10px;
+            box-shadow:  5px 5px 10px #bebebe, 
+                        -5px -5px 10px #ffffff;
+            cursor: pointer;
+            outline: none;
+            margin: 10px 0;
+            width: 100%;
+        }
+
+        button:active {
+            box-shadow: inset 5px 5px 10px #bebebe, 
+                        inset -5px -5px 10px #ffffff;
+        }
+    </style>
+</head>
+<body>
+    <div class="neumorphic">
+        <h2>Prompt Generator</h2>
+        <input type="text" id="userChoice" placeholder="Enter style/artist or leave blank for random">
+        <button id="generatePrompt">Generate Prompt</button>
+        <p id="promptOutput"></p>
+    </div>
+
+    <script>
+        document.getElementById('generatePrompt').addEventListener('click', function() {
+            let userChoice = document.getElementById('userChoice').value;
+            // This is just a placeholder. You'd replace this with the actual prompt generation logic.
+            let promptText = userChoice ? `Prompt with choice of ${userChoice}` : "Randomly generated prompt";
+            document.getElementById('promptOutput').innerText = promptText;
+        });
+    </script>
+</body>
+</html>
